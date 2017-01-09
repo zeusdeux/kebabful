@@ -22,12 +22,11 @@ const Map = React.createClass({
         this.state.infoWindow.setContent(`<p class="info-window">${r.name}<br />${r.rating}/5</p>`)
         this.state.infoWindow.open(this.state.map, marker)
         this.state.map.panTo(marker.position)
+        nextProps.handlerMarkerClick(r)
       })
 
       return marker
     })
-
-
 
     this.setState({ markers })
   },

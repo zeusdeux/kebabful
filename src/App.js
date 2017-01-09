@@ -24,24 +24,22 @@ const App = React.createClass({
       })
     })
     return {
-      name: 'name',
-      rating: '4',
-      description: 'omg kebabs',
-      address: 'heard in my life\nboop',
+      currentRestaurant: { pictureList: []},
       images: [],
       restaurants: [{name: 'test'}, {name: 'test2'}]
     }
+  },
+  handlerMarkerClick(currentRestaurant) {
+    this.setState({
+      currentRestaurant
+    })
   },
   render() {
     return (
       <div className="kebabful">
         <Logo />
-        <Map gmap={window.google.maps} restaurants={this.state.restaurants} />
-        <Details name={this.state.name}
-                 rating={this.state.rating}
-                 description={this.state.description}
-                 address={this.state.address}
-                 images={this.state.images} />
+        <Map gmap={window.google.maps} restaurants={this.state.restaurants} handlerMarkerClick={this.handlerMarkerClick}/>
+        <Details currentRestaurant={this.state.currentRestaurant} />
       </div>
     )
   }
