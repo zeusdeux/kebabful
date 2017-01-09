@@ -1,24 +1,56 @@
-.App {
-  text-align: center;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.kebabful {
+  border: 1px solid black;
+  position: relative;
+  display: flex;
+  height: 100vh;
 }
 
-.App-intro {
-  font-size: large;
+.x--full-screen {
+  width: 100vw;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.x--two-thirds {
+  width: 67vw;
 }
+
+.x--one-third {
+  width: 33vw;
+}
+
+.x--zero {
+  width: 0;
+}
+/* .App { */
+/*   text-align: center; */
+/* } */
+
+/* .App-logo { */
+/*   animation: App-logo-spin infinite 20s linear; */
+/*   height: 80px; */
+/* } */
+
+/* .App-header { */
+/*   background-color: #222; */
+/*   height: 150px; */
+/*   padding: 20px; */
+/*   color: white; */
+/* } */
+
+/* .App-intro { */
+/*   font-size: large; */
+/* } */
+
+/* @keyframes App-logo-spin { */
+/*   from { transform: rotate(0deg); } */
+/*   to { transform: rotate(360deg); } */
+/* } */
