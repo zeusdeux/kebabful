@@ -2,7 +2,6 @@ import React from 'react'
 import './Map.css'
 import pinIcon from './icon-pin.png'
 
-const BERLIN = { lat: 52.5200, lng: 13.4050 }
 const Map = React.createClass({
   getInitialState () {
     return {
@@ -21,15 +20,18 @@ const Map = React.createClass({
         icon: pinIcon
       })
 
-      marker.addListener('click', () => {
+      marker.addListener('mouseover', () => {
         this.state.infoWindow.setContent(`<p class="info-window">${r.name}<br />${r.rating}/5</p>`)
         this.state.infoWindow.open(this.state.map, marker)
+      })
+
+      marker.addListener('click', () => {
         this.state.map.panTo(marker.position)
         nextProps.handlerMarkerClick(r)
       })
 
-      this.state.infoWindow.addListener('closeclick', () => {
-        if (nextProps.showingDetails) nextProps.closeDetails()
+      marker.addListener('mouseout', () => {
+        this.state.infoWindow.close()
       })
       return marker
     })
@@ -40,7 +42,7 @@ const Map = React.createClass({
     const domNode = document.querySelector('.map')
     const map = new this.props.gmap.Map(domNode, {
       zoom: 13,
-      center: BERLIN,
+      center: this.props.BERLIN,
       mapTypeControl: false,
       zoomControl: true,
       zoomControlOptions: {
@@ -53,6 +55,7 @@ const Map = React.createClass({
     })
 
     this.setState({ map })
+    this.props.setMap(map)
   },
   render() {
     const classes = 'map ' + (this.props.showingDetails ? 'x--two-thirds' : 'x--full-screen')

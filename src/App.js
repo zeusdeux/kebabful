@@ -11,6 +11,7 @@ const client = createClient({
   space: SPACEID,
   accessToken: CTFLTOKEN
 })
+const BERLIN = { lat: 52.5200, lng: 13.4050 }
 
 const App = React.createClass({
   getInitialState() {
@@ -37,16 +38,20 @@ const App = React.createClass({
     })
   },
   handleCloseDetails() {
+    this.state.map.panTo(BERLIN)
     this.setState({
       currentRestaurant: { picturesList: [] },
       showingDetails: false
     })
   },
+  setMap(map) {
+    this.setState({ map })
+  },
   render() {
     return (
         <div className="kebabful">
         <Logo />
-        <Map gmap={window.google.maps} restaurants={this.state.restaurants} closeDetails={this.handleCloseDetails} handlerMarkerClick={this.handlerMarkerClick} showingDetails={this.state.showingDetails} />
+        <Map BERLIN={BERLIN} gmap={window.google.maps} setMap={this.setMap} restaurants={this.state.restaurants} closeDetails={this.handleCloseDetails} handlerMarkerClick={this.handlerMarkerClick} showingDetails={this.state.showingDetails} />
         <Details currentRestaurant={this.state.currentRestaurant} handleClose={this.handleCloseDetails} showingDetails={this.state.showingDetails} />
         </div>
     )
