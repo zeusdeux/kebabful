@@ -64,6 +64,11 @@
   background: url('icon-facebook.svg') no-repeat;
 }
 
+.property--link {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
 address {
   color: green;
 
