@@ -16,3 +16,7 @@ h1 {
   color: #4E95CF;
   text-decoration: underline;
 }
+
+.hide {
+  display: none;
+}

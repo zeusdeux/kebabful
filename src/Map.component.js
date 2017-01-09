@@ -1,6 +1,7 @@
 import React from 'react'
 import './Map.css'
 
+const BERLIN = { lat: 52.5200, lng: 13.4050 }
 const Map = React.createClass({
   getInitialState () {
     return {
@@ -25,6 +26,9 @@ const Map = React.createClass({
         nextProps.handlerMarkerClick(r)
       })
 
+      this.state.infoWindow.addListener('closeclick', () => {
+        if (nextProps.showingDetails) nextProps.closeDetails()
+      })
       return marker
     })
 
@@ -32,7 +36,6 @@ const Map = React.createClass({
   },
   componentDidMount() {
     const domNode = document.querySelector('.map')
-    const BERLIN = { lat: 52.5200, lng: 13.4050 }
     const map = new this.props.gmap.Map(domNode, {
       zoom: 13,
       center: BERLIN,
@@ -50,8 +53,10 @@ const Map = React.createClass({
     this.setState({ map })
   },
   render() {
+    const classes = 'map ' + (this.props.showingDetails ? 'x--two-thirds' : 'x--full-screen')
+
     return (
-      <div className="map x--two-thirds">
+      <div className={classes}>
       </div>
     )
   }
