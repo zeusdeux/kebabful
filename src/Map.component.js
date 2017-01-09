@@ -1,5 +1,6 @@
 import React from 'react'
 import './Map.css'
+import pinIcon from './icon-pin.png'
 
 const BERLIN = { lat: 52.5200, lng: 13.4050 }
 const Map = React.createClass({
@@ -16,7 +17,8 @@ const Map = React.createClass({
     const markers = nextProps.restaurants.map(r => {
       const marker = new nextProps.gmap.Marker({
         position: r.location,
-        map: this.state.map
+        map: this.state.map,
+        icon: pinIcon
       })
 
       marker.addListener('click', () => {
