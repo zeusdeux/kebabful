@@ -1,17 +1,56 @@
 .details {
+  box-shadow: -2px 0 3px rgba(0, 0, 0, .12);
   padding: 40px;
+  position: relative;
+  z-index: 90;
 }
 
 .name {
-
+  color: #252B31;
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 10px;
 }
 
 .rating {
-
+  margin-bottom: 10px;
 }
 
 .description {
+  border-bottom: 1px solid #E3E3E3;
+  color: #6B7C91;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
 
+.property {
+  background-position: center left !important;
+  color: #4F5A67;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding-left: 22px;
+}
+
+.properties {
+  margin-bottom: 40px;
+}
+
+.property--address {
+  background: url('icon-pin.svg') no-repeat;
+}
+
+.property--website {
+  background: url('icon-website.svg') no-repeat;
+}
+
+.property--facebook {
+  background: url('icon-facebook.svg') no-repeat;
+}
+
+.property__link {
+  margin-left: 10px;
 }
 
 address {

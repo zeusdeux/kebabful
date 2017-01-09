@@ -3,7 +3,9 @@ import logo from './logo.svg'
 import './Logo.css'
 
 const Logo = () => (
-    <img className="logo" src={logo} alt="kebabful"/>
+    <div className="logo-container">
+      <img className="logo" src={logo} alt="kebabful"/>
+    </div>
 )
 
 export default Logo
