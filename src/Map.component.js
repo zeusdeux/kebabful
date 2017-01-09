@@ -4,37 +4,50 @@ import './Map.css'
 const Map = React.createClass({
   getInitialState () {
     return {
-      map: null
+      map: null,
+      markers: [],
+      infoWindow: new this.props.gmap.InfoWindow({
+        content: ''
+      })
     }
   },
+  componentWillReceiveProps(nextProps) {
+    const markers = nextProps.restaurants.map(r => {
+      const marker = new nextProps.gmap.Marker({
+        position: r.location,
+        map: this.state.map
+      })
+
+      marker.addListener('click', () => {
+        this.state.infoWindow.setContent(`<p class="info-window">${r.name}<br />${r.rating}/5</p>`)
+        this.state.infoWindow.open(this.state.map, marker)
+        this.state.map.panTo(marker.position)
+      })
+
+      return marker
+    })
+
+
+
+    this.setState({ markers })
+  },
   componentDidMount() {
-    console.log(document.querySelector('.map'), this.props.gmap)
     const domNode = document.querySelector('.map')
-    const BERLIN =  { lat: 52.5074592, lng: 13.2860651 }
+    const BERLIN = { lat: 52.5200, lng: 13.4050 }
     const map = new this.props.gmap.Map(domNode, {
       zoom: 13,
       center: BERLIN,
-      mapTypeControl: true,
-      mapTypeControlOptions: {
-        style: this.props.gmap.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: this.props.gmap.ControlPosition.RIGHT_BOTTOM
-      },
+      mapTypeControl: false,
       zoomControl: true,
       zoomControlOptions: {
         style: this.props.gmap.ZoomControlStyle.MEDIUM,
-        position: this.props.gmap.ControlPosition.RIGHT_CENTER
+        position: this.props.gmap.ControlPosition.RIGHT_BOTTOM
       },
-      scaleControl: true,
-      streetViewControl: true,
-      streetViewControlOptions: {
-        position: this.props.gmap.ControlPosition.RIGHT_TOP
-      },
+      scaleControl: false,
+      streetViewControl: false,
       panControl: false
     })
-    // const marker = new this.props.gmap.Marker({
-    //   position: BERLIN,
-    //   map
-    // })
+
     this.setState({ map })
   },
   render() {
