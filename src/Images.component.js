@@ -3,7 +3,13 @@ import './Images.css'
 
 export default ({ urls }) => (
   <div className="gallery">
-    <h2>Images</h2>
-    { urls.map(url => <img src={url} className="image" alt="restaurant" />) }
+
+    { urls.map(url =>
+      <div className="image">
+        <div className="image-border">
+          <img src={url} alt="restaurant" />
+        </div>
+      </div>
+    ) }
   </div>
 )

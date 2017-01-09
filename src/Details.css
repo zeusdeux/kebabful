@@ -35,7 +35,7 @@
 }
 
 .property {
-  background-position: center left !important;
+  background-position: left 4px !important;
   color: #4F5A67;
   line-height: 1.5;
   margin-bottom: 8px;

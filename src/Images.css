@@ -3,7 +3,27 @@
 }
 
 .image {
-  width: 143px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  float: left;
+  padding: 0 20px 20px 0;
+  width: 33.33333%;
+}
+
+.image-border {
+  position: relative;
+}
+
+.image-border:before {
+  border: 1px solid #000;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  opacity: .2;
+  right: 0;
+  top: 0;
+}
+
+.image img {
+  display: block;
+  width: 100%;
 }
