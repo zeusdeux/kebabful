@@ -16,7 +16,8 @@ export default ({ currentRestaurant, handleClose, showingDetails }) => {
       <Rating rating={rating} />
       <p className="description">{description}</p>
       <div className="properties">
-        <address className="property property--address">{address} <a href={'https://www.google.com/maps?q=' + address} className="property__link link" target="_blank">Get directions</a></address>
+        <address className="property property--address">{address}</address>
+        <a href={'https://www.google.com/maps?q=' + address} className="property__link link" target="_blank">Get directions</a>
         <p className="property property--website"><a href={website} className="link" target="_blank">{website}</a></p>
         <p className="property property--facebook"><a href="" className="link">{facebook}</a></p>
       </div>

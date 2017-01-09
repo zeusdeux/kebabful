@@ -39,6 +39,7 @@ const App = React.createClass({
   },
   handleCloseDetails() {
     this.state.map.panTo(BERLIN)
+    this.state.map.setZoom(13)
     this.setState({
       currentRestaurant: { picturesList: [] },
       showingDetails: false

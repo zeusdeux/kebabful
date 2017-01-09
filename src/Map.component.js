@@ -33,6 +33,7 @@ const Map = React.createClass({
       marker.addListener('mouseout', () => {
         this.state.infoWindow.close()
       })
+
       return marker
     })
 
