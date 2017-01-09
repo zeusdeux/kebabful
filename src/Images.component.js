@@ -6,9 +6,9 @@ export default ({ urls }) => (
     {
       urls.map((url, i) => {
         return (
-          <div className="image">
+          <div className="image" key={i}>
             <div className="image-border">
-              <img src={url} alt="restaurant" key={i} />
+              <img src={url} alt="restaurant" />
             </div>
           </div>
         )

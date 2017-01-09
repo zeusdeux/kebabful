@@ -12,7 +12,8 @@ export default ({ rating }) => {
   }
 
   if (((rating * 10) % 10) !== 0) {
-    kebabs[Math.ceil(rating)] = kebab(halfKebab, Math.ceil(rating))
+    let index = Math.floor(rating)
+    kebabs[index] = kebab(halfKebab, index)
   }
 
   return (

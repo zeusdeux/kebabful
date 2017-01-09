@@ -11,7 +11,7 @@ export default ({ currentRestaurant, handleClose, showingDetails }) => {
 
   return (
     <article className={classes}>
-      <div className={'close' + hide} onClick={handleClose}><img src={close} /></div>
+      <div className={'close' + hide} onClick={handleClose}><img src={close} alt="close" /></div>
       <h1 className="name">{name}</h1>
       <Rating rating={rating} />
       <p className="description">{description}</p>
