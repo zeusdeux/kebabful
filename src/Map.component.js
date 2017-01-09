@@ -8,14 +8,29 @@ const Map = React.createClass({
     }
   },
   componentDidMount() {
-    const BERLIN = {lat: -25.363, lng: 131.044} // { lat: 52.5074592, lng: 13.2860651 }
+    console.log(document.querySelector('.map'), this.props.gmap)
     const domNode = document.querySelector('.map')
-    console.log(domNode)
+    const BERLIN =  { lat: 52.5074592, lng: 13.2860651 }
     const map = new this.props.gmap.Map(domNode, {
-      zoom: 4,
-      position: BERLIN
+      zoom: 13,
+      center: BERLIN,
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: this.props.gmap.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: this.props.gmap.ControlPosition.RIGHT_BOTTOM
+      },
+      zoomControl: true,
+      zoomControlOptions: {
+        style: this.props.gmap.ZoomControlStyle.MEDIUM,
+        position: this.props.gmap.ControlPosition.RIGHT_CENTER
+      },
+      scaleControl: true,
+      streetViewControl: true,
+      streetViewControlOptions: {
+        position: this.props.gmap.ControlPosition.RIGHT_TOP
+      },
+      panControl: false
     })
-    debugger;
     // const marker = new this.props.gmap.Marker({
     //   position: BERLIN,
     //   map
