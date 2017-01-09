@@ -1,4 +1,5 @@
 .map {
+  transition: width .2s ease-in-out;
 }
 
 .info-window {

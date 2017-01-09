@@ -19,6 +19,7 @@
 }
 
 .x--one-third {
+  right: 0 !important;
   width: 33vw;
 }
 
