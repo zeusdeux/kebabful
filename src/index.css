@@ -5,3 +5,8 @@ html, body, #root {
   width: 100vw;
   font-family: sans-serif;
 }
+
+h1 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}

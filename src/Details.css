@@ -1,4 +1,5 @@
 .details {
+  padding: 40px;
 }
 
 .name {
@@ -15,4 +16,5 @@
 
 address {
   color: green;
+
 }

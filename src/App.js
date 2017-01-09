@@ -3,6 +3,7 @@ import './App.css'
 import Map from './Map.component.js'
 import Details from './Details.component.js'
 import Logo from './Logo.component.js'
+import { createClient } from 'contentful'
 
 const App = React.createClass({
   getInitialState() {
