@@ -24,11 +24,13 @@ const App = React.createClass({
         restaurants
       })
     })
+
     return {
       currentRestaurant: { picturesList: [] },
       showingDetails: false,
       images: [],
-      restaurants: []
+      restaurants: [],
+      map: null
     }
   },
   handlerMarkerClick(currentRestaurant) {
@@ -50,11 +52,18 @@ const App = React.createClass({
   },
   render() {
     return (
-        <div className="kebabful">
+      <div className="kebabful">
         <Logo />
-        <Map BERLIN={BERLIN} gmap={window.google.maps} setMap={this.setMap} restaurants={this.state.restaurants} closeDetails={this.handleCloseDetails} handlerMarkerClick={this.handlerMarkerClick} showingDetails={this.state.showingDetails} />
-        <Details currentRestaurant={this.state.currentRestaurant} handleClose={this.handleCloseDetails} showingDetails={this.state.showingDetails} />
-        </div>
+        <Map BERLIN={BERLIN}
+             gmap={window.google.maps}
+             setMap={this.setMap}
+             restaurants={this.state.restaurants}
+             handlerMarkerClick={this.handlerMarkerClick}
+             showingDetails={this.state.showingDetails} />
+        <Details currentRestaurant={this.state.currentRestaurant}
+                 handleClose={this.handleCloseDetails}
+                 showingDetails={this.state.showingDetails} />
+      </div>
     )
   }
 })

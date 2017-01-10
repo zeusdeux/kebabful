@@ -1,7 +1,11 @@
 .logo-container {
   left: 20px;
-  padding: 40px;
+  padding: 30px;
   position: absolute;
   top: 20px;
   z-index: 60;
+}
+
+.logo {
+  height: 120px;
 }
