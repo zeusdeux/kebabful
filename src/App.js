@@ -26,29 +26,14 @@ const App = React.createClass({
     })
 
     return {
-      currentRestaurant: { picturesList: [] },
+      currentRestaurant: {},
       showingDetails: false,
-      images: [],
       restaurants: [],
       map: null
     }
   },
-  handlerMarkerClick(currentRestaurant) {
-    this.setState({
-      currentRestaurant,
-      showingDetails: true
-    })
-  },
-  handleCloseDetails() {
-    this.state.map.panTo(BERLIN)
-    this.state.map.setZoom(13)
-    this.setState({
-      currentRestaurant: { picturesList: [] },
-      showingDetails: false
-    })
-  },
-  setMap(map) {
-    this.setState({ map })
+  transition(newState) {
+    this.setState(Object.assign(this.state, newState))
   },
   render() {
     return (
@@ -56,13 +41,14 @@ const App = React.createClass({
         <Logo />
         <Map BERLIN={BERLIN}
              gmap={window.google.maps}
-             setMap={this.setMap}
              restaurants={this.state.restaurants}
-             handlerMarkerClick={this.handlerMarkerClick}
-             showingDetails={this.state.showingDetails} />
+             currentRestaurant={this.state.currentRestaurant}
+             showingDetails={this.state.showingDetails}
+             map={this.state.map}
+             transition={this.transition}/>
         <Details currentRestaurant={this.state.currentRestaurant}
-                 handleClose={this.handleCloseDetails}
-                 showingDetails={this.state.showingDetails} />
+                 showingDetails={this.state.showingDetails}
+                 transition={this.transition} />
       </div>
     )
   }

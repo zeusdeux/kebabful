@@ -4,7 +4,7 @@ import greyKebab from './icon-kebab_grey.svg'
 import redKebab from './icon-kebab_red.svg'
 import halfKebab from './icon-kebab_half.svg'
 
-export default ({ rating }) => {
+const Rating = ({ rating }) => {
   let kebabs = [kebab(greyKebab, 0), kebab(greyKebab, 1), kebab(greyKebab, 2), kebab(greyKebab, 3), kebab(greyKebab, 4)]
 
   for (let i = 0; i < rating; i++) {
@@ -28,3 +28,9 @@ function kebab(type, key) {
     <img className="kebab" src={type} alt="rating kebab" key={key} />
   )
 }
+
+Rating.propTypes = {
+  rating: React.PropTypes.number
+}
+
+export default Rating

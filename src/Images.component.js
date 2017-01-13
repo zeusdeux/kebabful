@@ -1,7 +1,7 @@
 import React from 'react'
 import './Images.css'
 
-export default ({ urls }) => (
+const Images = ({ urls }) => (
   <div className={'gallery' + (!urls.length ? ' hide' : '')}>
     {
       urls.map((url, i) => {
@@ -16,3 +16,9 @@ export default ({ urls }) => (
     }
   </div>
 )
+
+Images.propTypes = {
+  urls: React.PropTypes.array
+}
+
+export default Images

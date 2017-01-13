@@ -4,7 +4,7 @@ import close from './icon-close.svg'
 import Rating from './Rating.component.js'
 import './Details.css'
 
-export default ({ currentRestaurant, handleClose, showingDetails }) => {
+const Details = ({ currentRestaurant , showingDetails, transition }) => {
   const { name, rating, description, address, website, facebook, picturesList = [] } = currentRestaurant
   const classes = 'details ' + (showingDetails ? 'x--one-third' : 'x--zero')
   const hide = !showingDetails ? ' hide' : ''
@@ -24,4 +24,19 @@ export default ({ currentRestaurant, handleClose, showingDetails }) => {
       <Images urls={picturesList} />
     </article>
   )
+
+  function handleClose() {
+    transition({
+      currentRestaurant: {},
+      showingDetails: false
+    })
+  }
 }
+
+Details.propTypes = {
+  currentRestaurant: React.PropTypes.object,
+  transition: React.PropTypes.func,
+  showingDetails: React.PropTypes.bool
+}
+
+export default Details

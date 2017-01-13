@@ -4,30 +4,33 @@ import pinIcon from './icon-pin.png'
 
 const Map = React.createClass({
   getInitialState () {
+    const { InfoWindow } = this.props.gmap
+
     return {
-      map: null,
-      markers: [],
-      infoWindow: new this.props.gmap.InfoWindow({
+      infoWindow: new InfoWindow({
         content: ''
       })
     }
   },
-  componentWillReceiveProps(nextProps) {
-    const markers = nextProps.restaurants.map(r => {
-      const marker = new nextProps.gmap.Marker({
+  componentWillReceiveProps({ BERLIN, restaurants, gmap, showingDetails, map, transition }) {
+    restaurants.map(r => {
+      const marker = new gmap.Marker({
         position: r.location,
-        map: this.state.map,
+        map: map,
         icon: pinIcon
       })
 
       marker.addListener('mouseover', () => {
         this.state.infoWindow.setContent(`<p class="info-window">${r.name}<br />${r.rating}/5</p>`)
-        this.state.infoWindow.open(this.state.map, marker)
+        this.state.infoWindow.open(map, marker)
       })
 
       marker.addListener('click', () => {
-        this.state.map.panTo(marker.position)
-        nextProps.handlerMarkerClick(r)
+        map.panTo(marker.position)
+        transition({
+          currentRestaurant: r,
+          showingDetails: true
+        })
       })
 
       marker.addListener('mouseout', () => {
@@ -37,29 +40,34 @@ const Map = React.createClass({
       return marker
     })
 
-    this.setState({ markers })
+    if (!showingDetails && map) {
+      map.panTo(BERLIN)
+      map.setZoom(13)
+    }
   },
   componentDidMount() {
+    const { BERLIN, gmap, transition } = this.props
+    const { Map, ZoomControlStyle, ControlPosition } = gmap
     const domNode = document.querySelector('.map')
-    const map = new this.props.gmap.Map(domNode, {
+    const map = new Map(domNode, {
       zoom: 13,
-      center: this.props.BERLIN,
+      center: BERLIN,
       mapTypeControl: false,
       zoomControl: true,
       zoomControlOptions: {
-        style: this.props.gmap.ZoomControlStyle.MEDIUM,
-        position: this.props.gmap.ControlPosition.RIGHT_BOTTOM
+        style: ZoomControlStyle.MEDIUM,
+        position: ControlPosition.RIGHT_BOTTOM
       },
       scaleControl: false,
       streetViewControl: false,
       panControl: false
     })
 
-    this.setState({ map })
-    this.props.setMap(map)
+    transition({ map })
   },
   render() {
-    const classes = 'map ' + (this.props.showingDetails ? 'x--two-thirds' : 'x--full-screen')
+    const { showingDetails } = this.props
+    const classes = 'map ' + (showingDetails ? 'x--two-thirds' : 'x--full-screen')
 
     return (
       <div className={classes}>
@@ -67,5 +75,14 @@ const Map = React.createClass({
     )
   }
 })
+
+Map.propTypes = {
+  BERLIN: React.PropTypes.object,
+  gmap: React.PropTypes.object,
+  showingDetails: React.PropTypes.bool,
+  transition: React.PropTypes.func,
+  restaurants: React.PropTypes.array,
+  map: React.PropTypes.object
+}
 
 export default Map
