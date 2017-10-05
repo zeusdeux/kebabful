@@ -4,7 +4,7 @@ import close from './icon-close.svg'
 import Rating from './Rating.component.js'
 import './Details.css'
 
-const Details = ({ currentRestaurant , showingDetails, transition }) => {
+const Details = ({ currentRestaurant, showingDetails, transition }) => {
   const { name, rating, description, address, website, facebook, picturesList = [] } = currentRestaurant
   const classes = 'details ' + (showingDetails ? 'x--one-third' : 'x--zero')
   const hide = !showingDetails ? ' hide' : ''
